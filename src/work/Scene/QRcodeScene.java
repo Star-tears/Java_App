@@ -23,7 +23,7 @@ public class QRcodeScene extends MyScene{
         for(int i=0;i<qrcode.size();i++){
             StringBuilder tmp=new StringBuilder();
             for(int j=0;j<qrcode.get(i).length();j++){
-                if(qrcode.get(i).charAt(j)=='1')tmp.append("⛆");
+                if(qrcode.get(i).charAt(j)=='1')tmp.append("#");
                 else tmp.append(" ");
             }
             this.replaceLine(i+1,convert2DoubleByte(tmp.toString()),"left");
