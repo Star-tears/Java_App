@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.io.IOException;
 
 public class MyScene {
-    public static String pleaseEnter = new String("请输入你的操作>>> ");
+    public static String pleaseEnter = new String("请输入>>> ");
     public int width;
     public int height;
     public ArrayList<String> myWindows;
@@ -26,6 +26,7 @@ public class MyScene {
         init();
     }
 
+    //清屏
     public static void clean() throws IOException, InterruptedException {
         System.out.print("\n\n\n\n\n\n\n\n\n\n\n------------------------------------------------------------------------------------------------");
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();

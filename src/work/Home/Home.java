@@ -2,6 +2,7 @@ package work.Home;
 
 import work.Game.WordsGame;
 import work.QRcode.QRcode;
+import work.Quiz.Quiz;
 import work.Scene.HomeScene;
 
 import java.io.IOException;
@@ -24,6 +25,7 @@ public class Home {
                 case "0":
                     break;
                 case "1":
+                    new Quiz();
                     break;
                 case "2":
                     new WordsGame();
@@ -32,6 +34,8 @@ public class Home {
                     break;
                 case "4":
                     new QRcode("Bilibili");
+                    break;
+                case "5":
                     break;
             }
         }

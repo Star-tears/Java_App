@@ -29,7 +29,7 @@ public class DataInfo {
             user_pwd.put(arrs[0], arrs[1]);
         }
         in.close();
-        //test();
+//        test();
     }
 
     /**
@@ -55,7 +55,7 @@ public class DataInfo {
         user_pwd.put(user, password);
         File file=new File(path_prefix + "user\\userPwd\\userPwd.txt");
         new PathPrefix(file);
-        PrintWriter pr = new PrintWriter(new FileWriter(file), false);
+        PrintWriter pr = new PrintWriter(new FileWriter(file, true));
         pr.println(user + " " + password);
         pr.close();
         creatUser(user);
@@ -64,8 +64,11 @@ public class DataInfo {
     private void creatUser(String user) throws IOException {
         File file=new File(path_prefix + "user\\userInfo\\" + user + ".txt");
         new PathPrefix(file);
-        PrintWriter pr = new PrintWriter(new FileWriter(file), false);
+        PrintWriter pr = new PrintWriter(new FileWriter(file, true));
         pr.println("0 0 0 0 0");
         pr.close();
+    }
+    public boolean checkInKeys(String user){
+        return user_pwd.containsKey(user);
     }
 }

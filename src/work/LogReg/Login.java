@@ -12,6 +12,8 @@ public class Login {
     private boolean isRight = false;
     private String user1;
     private String password1;
+    private DataInfo dataInfo;
+
     public Login() throws IOException, InterruptedException {
         run();
     }
@@ -26,6 +28,7 @@ public class Login {
     }
 
     public void run() throws IOException, InterruptedException {
+        dataInfo = new DataInfo();
         Scanner in = new Scanner(System.in);
         while (!isRight) {
             LoginScene loginScene = new LoginScene();
@@ -76,10 +79,14 @@ public class Login {
         while (true) {
             System.out.print("输入注册用户名： ");
             user1 = in.nextLine();
-            if (checkPwd(user1)) {
+            if (checkPwd(user1)&&!dataInfo.checkInKeys(user1)) {
                 break;
             }
-            System.out.println("用户名不合法！（用户名必须是6-20位的字母、数字、下划线组合）");
+            if (dataInfo.checkInKeys(user1)) {
+                System.out.println("用户名已存在！！！");
+            } else {
+                System.out.println("用户名不合法！（用户名必须是6-20位的字母、数字、下划线组合）");
+            }
         }
         while (true) {
             System.out.print("输入密码： ");
