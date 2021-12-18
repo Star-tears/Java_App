@@ -23,6 +23,6 @@ public class HomeScene extends MyScene {
         this.replaceLine(this.height - 4, "3.个人信息", "right");
         this.replaceLine(this.height - 3, "4.一键三连", "right");
         this.replaceLine(this.height - 2, "5.天梯排行", "right");
-        this.selectOption.add("知识问答[1] 文字迷宫[2] 个人信息[3] 一键三连[4] 退出应用[exit]");
+        this.selectOption.add("知识问答[1] 文字迷宫[2] 个人信息[3] 一键三连[4] 天梯排行[5] 退出应用[exit]");
     }
 }
