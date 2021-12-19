@@ -6,35 +6,35 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class QRcodeScene extends MyScene{
+public class QRcodeScene extends MyScene {
     private ArrayList<String> qrcode;
 
     //二维码加载
     public QRcodeScene(String s) throws IOException {
-        super(31,31);
-        InputStream is = this.getClass().getResourceAsStream("/work/DataInfo/data/QRcode/"+s+".txt");
+        super(31, 31);
+        InputStream is = this.getClass().getResourceAsStream("/work/DataInfo/data/QRcode/" + s + ".txt");
         BufferedReader in = new BufferedReader(new InputStreamReader(is));
         this.qrcode = new ArrayList<>();
         String line = "";
-        while ((line=in.readLine())!=null) {
+        while ((line = in.readLine()) != null) {
             if (line.equals("")) continue;
             this.qrcode.add(line);
         }
         in.close();
-        for(int i=0;i<qrcode.size();i++){
-            StringBuilder tmp=new StringBuilder();
-            for(int j=0;j<qrcode.get(i).length();j++){
-                if(qrcode.get(i).charAt(j)=='1')tmp.append("燚");
+        for (int i = 0; i < qrcode.size(); i++) {
+            StringBuilder tmp = new StringBuilder();
+            for (int j = 0; j < qrcode.get(i).length(); j++) {
+                if (qrcode.get(i).charAt(j) == '1') tmp.append("燚");
                 else tmp.append(" ");
             }
-            this.replaceLine(i+1,convert2DoubleByte(tmp.toString()),"left");
+            this.replaceLine(i + 1, convert2DoubleByte(tmp.toString()), "left");
         }
         this.selectOption.add("恭喜你发现了这里，欢迎一键三连！夹带私货（bushi");
         this.selectOption.add("返回主页[0] 结束程序[exit]");
     }
 
     @Override
-    public void init(){
+    public void init() {
         for (int i = 0; i < this.height; i++) {
             StringBuilder tmp = new StringBuilder();
             for (int j = 0; j < this.width; j++) {
@@ -43,5 +43,31 @@ public class QRcodeScene extends MyScene{
             }
             this.myWindows.add(convert2DoubleByte(tmp.toString()));
         }
+    }
+
+    @Override
+    public void printScene() throws IOException, InterruptedException {
+        clean();
+        for (int i = 0; i < this.height; i++) {
+            StringBuilder tmp = new StringBuilder();
+            if (i == 0 || i == this.height - 1) {
+                tmp.append(colorString("", 36, this.myWindows.get(i)));
+            } else {
+                for (int j = 0; j < this.width; j++) {
+                    if (j == 0 || j == this.width - 1) {
+                        tmp.append(colorString("", 36, String.valueOf(this.myWindows.get(i).charAt(j))));
+                    } else if (String.valueOf(this.myWindows.get(i).charAt(j)).equals(convert2DoubleByte(" "))) {
+                        tmp.append(convert2DoubleByte(" "));
+                    } else {
+                        tmp.append(colorString("", 36, 1, 46, String.valueOf(this.myWindows.get(i).charAt(j))));
+                    }
+                }
+            }
+            System.out.println(tmp.toString());
+        }
+        for (String selectOption : this.selectOption) {
+            System.out.println(colorString("", 35, selectOption));
+        }
+        System.out.print(pleaseEnter);
     }
 }

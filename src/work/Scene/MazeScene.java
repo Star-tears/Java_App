@@ -15,14 +15,7 @@ public class MazeScene extends MyScene {
         nowy = 1;
     }
 
-    /**
-     * @param pattern 前面的图案 such as "=============="
-     * @param code    颜色代号：背景颜色代号(41-46)；前景色代号(31-36)
-     * @param content 要打印的内容
-     */
-    public static void printSingleColor(String pattern, int code, String content) {
-        System.out.format("%s\33[%dm%s\033[0m", pattern, code, content);
-    }
+
 
     @Override
     public void init() {
@@ -44,20 +37,20 @@ public class MazeScene extends MyScene {
         for (int i = 0; i < this.myWindows.size(); i++) {
             if(i==this.height-2&&i==nowx){
                 System.out.print(this.myWindows.get(i).substring(0,nowy));
-                printSingleColor("", 31, this.myWindows.get(i).substring(nowy,nowy+1));
+                printSingleColor("", 31, 1,this.myWindows.get(i).substring(nowy,nowy+1));
                 if(nowy<this.width-2){
                     System.out.print(this.myWindows.get(i).substring(nowy+1,this.width-2));
-                    printSingleColor("", 31, this.myWindows.get(i).substring(this.width-2,this.width-1));
+                    printSingleColor("", 36, this.myWindows.get(i).substring(this.width-2,this.width-1));
                 }
                 System.out.println(this.myWindows.get(i).substring(this.width-1,this.width));
             }
             else if (i == nowx){
                 System.out.print(this.myWindows.get(i).substring(0,nowy));
-                printSingleColor("", 31, this.myWindows.get(i).substring(nowy,nowy+1));
+                printSingleColor("", 31, 1,this.myWindows.get(i).substring(nowy,nowy+1));
                 System.out.println(this.myWindows.get(i).substring(nowy+1,this.width));
             }else if(i==this.height-2){
                 System.out.print(this.myWindows.get(i).substring(0,this.width-2));
-                printSingleColor("", 31, this.myWindows.get(i).substring(this.width-2,this.width-1));
+                printSingleColor("", 36, this.myWindows.get(i).substring(this.width-2,this.width-1));
                 System.out.println(this.myWindows.get(i).substring(this.width-1,this.width));
             }else
                 System.out.println(this.myWindows.get(i));

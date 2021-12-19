@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.io.IOException;
 
 public class MyScene {
-    public static String pleaseEnter = new String("请输入>>> ");
+    public static String pleaseEnter = new String(colorString("", 33, 1, "请输入>>> "));
     public int width;
     public int height;
     public ArrayList<String> myWindows;
@@ -28,7 +28,7 @@ public class MyScene {
 
     //清屏
     public static void clean() throws IOException, InterruptedException {
-        System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n------------------------------------------------------------------------------------------------");
+        //System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n------------------------------------------------------------------------------------------------");
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         System.out.println("");
     }
@@ -48,13 +48,70 @@ public class MyScene {
         return new String(c);
     }
 
+    /**
+     * @param pattern 前面的图案 such as "=============="
+     * @param code    颜色代号：背景颜色代号(41-46)；前景色代号(31-36)
+     * @param content 要打印的内容
+     */
+    public static void printSingleColor(String pattern, int code, String content) {
+        System.out.format("%s\033[%dm%s\033[0m", pattern, code, content);
+    }
+
+    /**
+     * @param pattern 前面的图案 such as "=============="
+     * @param code    颜色代号：背景颜色代号(41-46)；前景色代号(31-36)
+     * @param n       数字+m：1加粗；3斜体；4下划线
+     * @param content 要打印的内容
+     */
+    public static void printSingleColor(String pattern, int code, int n, String content) {
+        System.out.format("%s\033[%d;%dm%s\033[0m", pattern, code, n, content);
+    }
+
+    /**
+     * @param pattern 前面的图案 such as "=============="
+     * @param code    颜色代号：背景颜色代号(41-46)；前景色代号(31-36)
+     * @param content 要打印的内容
+     */
+    public static String colorString(String pattern, int code, String content) {
+        String tmp = String.format("%s\033[%dm%s\033[0m", pattern, code, content);
+        return tmp;
+    }
+
+
+    /**
+     * @param pattern 前面的图案 such as "=============="
+     * @param code    颜色代号：背景颜色代号(41-46)；前景色代号(31-36)
+     * @param n       数字+m：1加粗；3斜体；4下划线
+     * @param content 要打印的内容
+     */
+    public static String colorString(String pattern, int code, int n, String content) {
+        String tmp = String.format("%s\033[%d;%dm%s\033[0m", pattern, code, n, content);
+        return tmp;
+    }
+
+    /**
+     * @param pattern 前面的图案 such as "=============="
+     * @param code    颜色代号：背景颜色代号(41-46)；前景色代号(31-36)
+     * @param n       数字+m：1加粗；3斜体；4下划线
+     * @param content 要打印的内容
+     */
+    public static String colorString(String pattern, int code, int n, int n2, String content) {
+        String tmp = String.format("%s\033[%d;%d;%dm%s\033[0m", pattern, code, n, n2, content);
+        return tmp;
+    }
+
     //初始化
     public void init() {
 
         for (int i = 0; i < this.height; i++) {
             StringBuilder tmp = new StringBuilder();
             for (int j = 0; j < this.width; j++) {
-                if (i == 0 || j == 0 || i == this.height - 1 || j == this.width - 1) tmp.append("#");
+                if (i == 0 && j == 0) tmp.append("┌");
+                else if (i == 0 && j == this.width - 1) tmp.append("┐");
+                else if (i == this.height - 1 && j == 0) tmp.append("└");
+                else if (i == this.height - 1 && j == this.width - 1) tmp.append("┘");
+                else if (i == 0 || i == this.height - 1) tmp.append("-");
+                else if (j == 0 || j == this.width - 1) tmp.append("│");
                 else tmp.append(" ");
             }
             this.myWindows.add(convert2DoubleByte(tmp.toString()));
@@ -113,8 +170,8 @@ public class MyScene {
     public void insertLine(int index, int pos, String s) {
         ArrayList<String> tmp = new ArrayList<>();
         int st = 0;
-        tmp.add(this.myWindows.get(index).substring(1,pos)+s.substring(st,st+Math.min(s.length(),this.width-pos-1)));
-        st+=this.width-pos-1;
+        tmp.add(this.myWindows.get(index).substring(1, pos) + s.substring(st, st + Math.min(s.length(), this.width - pos - 1)));
+        st += this.width - pos - 1;
         while (st < s.length()) {
             tmp.add(s.substring(st, Math.min(s.length(), st + this.width - 2)));
             st += this.width - 2;
@@ -127,13 +184,20 @@ public class MyScene {
     //输出屏幕当前信息
     public void printScene() throws IOException, InterruptedException {
         clean();
-        for (String myString : this.myWindows) {
-            System.out.println(myString);
+        int bound_color = 36;
+        for (int i = 0; i < this.height; i++) {
+            if (i == 0 || i == this.height - 1) {
+                System.out.println(colorString("", bound_color, 1, this.myWindows.get(i)));
+            } else {
+                System.out.println(colorString("", bound_color, 1, this.myWindows.get(i).substring(0, 1)) + this.myWindows.get(i).substring(1, this.width - 1) + colorString("", bound_color, 1, this.myWindows.get(i).substring(this.width - 1, this.width)));
+            }
         }
+//        for (String myString : this.myWindows) {
+//            System.out.println(myString);
+//        }
         for (String selectOption : this.selectOption) {
             System.out.println(selectOption);
         }
         System.out.print(pleaseEnter);
     }
-
 }
