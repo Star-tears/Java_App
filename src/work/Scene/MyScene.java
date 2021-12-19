@@ -28,7 +28,7 @@ public class MyScene {
 
     //清屏
     public static void clean() throws IOException, InterruptedException {
-        System.out.print("\n\n\n\n\n\n\n\n\n\n\n------------------------------------------------------------------------------------------------");
+        System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n------------------------------------------------------------------------------------------------");
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         System.out.println("");
     }
@@ -48,6 +48,7 @@ public class MyScene {
         return new String(c);
     }
 
+    //初始化
     public void init() {
 
         for (int i = 0; i < this.height; i++) {
@@ -84,9 +85,36 @@ public class MyScene {
         this.myWindows.set(index, tmp.toString());
     }
 
+    /**
+     * 从第index行插入字符串s
+     *
+     * @param index 第index行
+     * @param s     插入字符串
+     */
     public void insertLine(int index, String s) {
         ArrayList<String> tmp = new ArrayList<>();
         int st = 0;
+        while (st < s.length()) {
+            tmp.add(s.substring(st, Math.min(s.length(), st + this.width - 2)));
+            st += this.width - 2;
+        }
+        for (int i = 0; i < tmp.size(); i++) {
+            replaceLine(i + index, tmp.get(i), "left");
+        }
+    }
+
+    /**
+     * 从第index行第pos个位置插入字符串s
+     *
+     * @param index 第index行
+     * @param pos   第pos个字符
+     * @param s     插入字符串
+     */
+    public void insertLine(int index, int pos, String s) {
+        ArrayList<String> tmp = new ArrayList<>();
+        int st = 0;
+        tmp.add(this.myWindows.get(index).substring(1,pos)+s.substring(st,st+Math.min(s.length(),this.width-pos-1)));
+        st+=this.width-pos-1;
         while (st < s.length()) {
             tmp.add(s.substring(st, Math.min(s.length(), st + this.width - 2)));
             st += this.width - 2;

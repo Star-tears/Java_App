@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class QRcodeScene extends MyScene{
     private ArrayList<String> qrcode;
 
+    //二维码加载
     public QRcodeScene(String s) throws IOException {
         super(31,31);
         InputStream is = this.getClass().getResourceAsStream("/work/DataInfo/data/QRcode/"+s+".txt");
@@ -23,7 +24,7 @@ public class QRcodeScene extends MyScene{
         for(int i=0;i<qrcode.size();i++){
             StringBuilder tmp=new StringBuilder();
             for(int j=0;j<qrcode.get(i).length();j++){
-                if(qrcode.get(i).charAt(j)=='1')tmp.append("#");
+                if(qrcode.get(i).charAt(j)=='1')tmp.append("燚");
                 else tmp.append(" ");
             }
             this.replaceLine(i+1,convert2DoubleByte(tmp.toString()),"left");
