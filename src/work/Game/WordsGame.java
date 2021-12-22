@@ -2,6 +2,7 @@ package work.Game;
 
 import work.Scene.MazeScene;
 
+import java.io.Console;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;

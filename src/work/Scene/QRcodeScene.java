@@ -66,7 +66,7 @@ public class QRcodeScene extends MyScene {
             System.out.println(tmp.toString());
         }
         for (String selectOption : this.selectOption) {
-            System.out.println(colorString("", 35, selectOption));
+            System.out.println(colorString("", 35, 1, selectOption));
         }
         System.out.print(pleaseEnter);
     }

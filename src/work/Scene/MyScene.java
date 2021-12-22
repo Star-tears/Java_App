@@ -110,7 +110,7 @@ public class MyScene {
                 else if (i == 0 && j == this.width - 1) tmp.append("┐");
                 else if (i == this.height - 1 && j == 0) tmp.append("└");
                 else if (i == this.height - 1 && j == this.width - 1) tmp.append("┘");
-                else if (i == 0 || i == this.height - 1) tmp.append("-");
+                else if (i == 0 || i == this.height - 1) tmp.append("=");
                 else if (j == 0 || j == this.width - 1) tmp.append("│");
                 else tmp.append(" ");
             }
