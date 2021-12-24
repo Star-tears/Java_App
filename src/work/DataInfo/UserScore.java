@@ -9,8 +9,25 @@ public class UserScore implements Comparable {
         this.score = _score;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
     @Override
     public int compareTo(Object o) {
-        return 0;
+        if (!(o instanceof UserScore)) {
+            throw new RuntimeException("不是UserScore对象");
+        }
+        UserScore p = (UserScore) o;
+        if (this.score < p.score)
+            return 1;
+        if (this.score == p.score) {
+            return this.name.compareTo(p.name);
+        }
+        return -1;
     }
 }

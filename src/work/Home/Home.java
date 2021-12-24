@@ -3,6 +3,7 @@ package work.Home;
 import work.Game.WordsGame;
 import work.QRcode.QRcode;
 import work.Quiz.Quiz;
+import work.Rank.RankList;
 import work.Scene.HomeScene;
 
 import java.io.IOException;
@@ -36,6 +37,7 @@ public class Home {
                     new QRcode("Bilibili");
                     break;
                 case "5":
+                    new RankList();
                     break;
             }
         }

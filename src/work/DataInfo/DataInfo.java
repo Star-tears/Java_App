@@ -4,9 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 import static work.DataInfo.PathPrefix.path_prefix;
 
@@ -17,6 +15,11 @@ public class DataInfo {
     }
 
     public DataInfo(int op) throws IOException {
+        init();
+//        test();
+    }
+
+    private void init() throws IOException {
         user_pwd = new HashMap<>();
         File file = new File(path_prefix + "user\\userPwd\\userPwd.txt");
         new PathPrefix(file);
@@ -29,8 +32,9 @@ public class DataInfo {
             user_pwd.put(arrs[0], arrs[1]);
         }
         in.close();
-//        test();
     }
+
+    public Set<String> getUserSet(){return user_pwd.keySet();}
 
     /**
      * 判断用户名和密码是否正确
@@ -53,7 +57,7 @@ public class DataInfo {
 
     public void add(String user, String password) throws IOException {
         user_pwd.put(user, password);
-        File file=new File(path_prefix + "user\\userPwd\\userPwd.txt");
+        File file = new File(path_prefix + "user\\userPwd\\userPwd.txt");
         new PathPrefix(file);
         PrintWriter pr = new PrintWriter(new FileWriter(file, true));
         pr.println(user + " " + password);
@@ -62,13 +66,20 @@ public class DataInfo {
     }
 
     private void creatUser(String user) throws IOException {
-        File file=new File(path_prefix + "user\\userInfo\\" + user + ".txt");
+        File file = new File(path_prefix + "user\\userInfo\\" + user + ".txt");
         new PathPrefix(file);
         PrintWriter pr = new PrintWriter(new FileWriter(file, true));
         pr.println("0 0 0 0 0");
         pr.close();
     }
-    public boolean checkInKeys(String user){
+
+    /**
+     * 判断用户名存不存在
+     *
+     * @param user 输入用户名
+     * @return 存在返回真
+     */
+    public boolean checkInKeys(String user) {
         return user_pwd.containsKey(user);
     }
 }
