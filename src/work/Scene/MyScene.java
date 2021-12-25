@@ -29,7 +29,17 @@ public class MyScene {
     //清屏
     public static void clean() throws IOException, InterruptedException {
         //System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n------------------------------------------------------------------------------------------------");
-        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+
+        try {
+            String os = System.getProperty("os.name");
+            if (os.contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                System.out.println("\033c");
+            }
+        } catch (Exception exception) {
+            //  Handle exception.
+        }
         System.out.println("");
     }
 

@@ -38,7 +38,7 @@ public class UserInfo {
         Set<String> userSet = new DataInfo().getUserSet();
         for (String user_name_tmp : userSet) {
             if (user_name_tmp.equals(name)) continue;
-            File file = new File(path_prefix + "user\\userInfo\\" + user_name_tmp + ".txt");
+            File file = new File(path_prefix + "user/userInfo/" + user_name_tmp + ".txt");
             new PathPrefix(file);
             Scanner in = new Scanner(file);
             int user_score_tmp = in.nextInt();
@@ -71,7 +71,7 @@ public class UserInfo {
         itemId.put('连', 3);
         name = user;
         numOfItems = new ArrayList<>();
-        File file = new File(path_prefix + "user\\userInfo\\" + user + ".txt");
+        File file = new File(path_prefix + "user/userInfo/" + user + ".txt");
         new PathPrefix(file);
         Scanner in = new Scanner(file);
         score = in.nextInt();
@@ -82,7 +82,7 @@ public class UserInfo {
     }
 
     public void update() throws IOException {
-        File file = new File(path_prefix + "user\\userInfo\\" + name + ".txt");
+        File file = new File(path_prefix + "user/userInfo/" + name + ".txt");
         new PathPrefix(file);
         PrintWriter pr = new PrintWriter(new FileWriter(file, false));
         pr.print(score + "");

@@ -21,7 +21,7 @@ public class DataInfo {
 
     private void init() throws IOException {
         user_pwd = new HashMap<>();
-        File file = new File(path_prefix + "user\\userPwd\\userPwd.txt");
+        File file = new File(path_prefix + "user/userPwd/userPwd.txt");
         new PathPrefix(file);
         Scanner in = new Scanner(file);
         String[] arrs = null;
@@ -57,7 +57,7 @@ public class DataInfo {
 
     public void add(String user, String password) throws IOException {
         user_pwd.put(user, password);
-        File file = new File(path_prefix + "user\\userPwd\\userPwd.txt");
+        File file = new File(path_prefix + "user/userPwd/userPwd.txt");
         new PathPrefix(file);
         PrintWriter pr = new PrintWriter(new FileWriter(file, true));
         pr.println(user + " " + password);
@@ -66,7 +66,7 @@ public class DataInfo {
     }
 
     private void creatUser(String user) throws IOException {
-        File file = new File(path_prefix + "user\\userInfo\\" + user + ".txt");
+        File file = new File(path_prefix + "user/userInfo/" + user + ".txt");
         new PathPrefix(file);
         PrintWriter pr = new PrintWriter(new FileWriter(file, true));
         pr.println("0 0 0 0 0");
