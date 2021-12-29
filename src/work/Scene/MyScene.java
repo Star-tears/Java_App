@@ -1,14 +1,25 @@
 package work.Scene;
 
+import work.DataInfo.ThemesInfo;
+
 import java.util.ArrayList;
-import java.io.IOException;
+
+import static work.DataInfo.ThemesInfo.color;
+import static work.DataInfo.ThemesInfo.highlight_color;
 
 public class MyScene {
-    public static String pleaseEnter = new String(colorString("", 33, 1, "请输入>>> "));
+    public static String pleaseEnter = "请输入>>> ";
     public int width;
     public int height;
     public ArrayList<String> myWindows;
     public ArrayList<String> selectOption;
+    public int bound_color;
+    public int title_color;
+    public int sepLine_color;
+    public int content_color;
+    public int selections_color;
+    public int notice_color;
+    public int input_color;
 
     MyScene() {
         this.width = 38;
@@ -26,8 +37,10 @@ public class MyScene {
         init();
     }
 
-    //清屏
-    public static void clean() throws IOException, InterruptedException {
+    /**
+     * 清屏
+     */
+    public static void clean() {
         //System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n------------------------------------------------------------------------------------------------");
 
         try {
@@ -40,7 +53,7 @@ public class MyScene {
         } catch (Exception exception) {
             //  Handle exception.
         }
-        System.out.println("");
+        System.out.println();
     }
 
     /**
@@ -58,59 +71,47 @@ public class MyScene {
         return new String(c);
     }
 
-    /**
-     * @param pattern 前面的图案 such as "=============="
-     * @param code    颜色代号：背景颜色代号(41-46)；前景色代号(31-36)
-     * @param content 要打印的内容
-     */
-    public static void printSingleColor(String pattern, int code, String content) {
-        System.out.format("%s\033[%dm%s\033[0m", pattern, code, content);
-    }
 
     /**
-     * @param pattern 前面的图案 such as "=============="
-     * @param code    颜色代号：背景颜色代号(41-46)；前景色代号(31-36)
-     * @param n       数字+m：1加粗；3斜体；4下划线
-     * @param content 要打印的内容
-     */
-    public static void printSingleColor(String pattern, int code, int n, String content) {
-        System.out.format("%s\033[%d;%dm%s\033[0m", pattern, code, n, content);
-    }
-
-    /**
-     * @param pattern 前面的图案 such as "=============="
      * @param code    颜色代号：背景颜色代号(41-46)；前景色代号(31-36)
      * @param content 要打印的内容
      */
-    public static String colorString(String pattern, int code, String content) {
-        String tmp = String.format("%s\033[%dm%s\033[0m", pattern, code, content);
-        return tmp;
+    public static String colorString(int code, String content) {
+        return String.format("\033[%dm%s\033[0m", code, content);
     }
 
 
     /**
-     * @param pattern 前面的图案 such as "=============="
      * @param code    颜色代号：背景颜色代号(41-46)；前景色代号(31-36)
      * @param n       数字+m：1加粗；3斜体；4下划线
      * @param content 要打印的内容
      */
-    public static String colorString(String pattern, int code, int n, String content) {
-        String tmp = String.format("%s\033[%d;%dm%s\033[0m", pattern, code, n, content);
-        return tmp;
+    public static String colorString(int code, int n, String content) {
+        return String.format("\033[%d;%dm%s\033[0m", code, n, content);
     }
 
     /**
-     * @param pattern 前面的图案 such as "=============="
      * @param code    颜色代号：背景颜色代号(41-46)；前景色代号(31-36)
      * @param n       数字+m：1加粗；3斜体；4下划线
      * @param content 要打印的内容
      */
-    public static String colorString(String pattern, int code, int n, int n2, String content) {
-        String tmp = String.format("%s\033[%d;%d;%dm%s\033[0m", pattern, code, n, n2, content);
-        return tmp;
+    public static String colorString(int code, int n, int n2, String content) {
+        return String.format("\033[%d;%d;%dm%s\033[0m", code, n, n2, content);
     }
 
-    //初始化
+    /**
+     * 从当前位置开始字符颜色定义
+     *
+     * @param code 颜色id
+     * @return 返回
+     */
+    public static String colorStart(int code) {
+        return String.format("\033[%dm", code);
+    }
+
+    /**
+     * 初始化
+     */
     public void init() {
 
         for (int i = 0; i < this.height; i++) {
@@ -191,23 +192,72 @@ public class MyScene {
         }
     }
 
-    //输出屏幕当前信息
-    public void printScene() throws IOException, InterruptedException {
+    /**
+     * 分割线
+     *
+     * @param index 第index行
+     * @param ch    分割字符样式
+     */
+    public void sepLine(int index, char ch) {
+        this.insertLine(index, String.valueOf(ch).repeat(Math.max(0, this.width - 2)));
+    }
+
+    /**
+     * 读取所有颜色
+     */
+    public void getAllColor() {
+        this.bound_color = ThemesInfo.getBound_color();
+        this.title_color = ThemesInfo.getTitle_color();
+        this.sepLine_color = ThemesInfo.getSepLine_color();
+        this.content_color = ThemesInfo.getContent_color();
+        this.selections_color = ThemesInfo.getSelections_color();
+        this.notice_color = ThemesInfo.getNotice_color();
+        this.input_color = ThemesInfo.getInput_color();
+    }
+
+    /**
+     * 输出屏幕当前所有信息
+     */
+    public void printScene() {
         clean();
-        int bound_color = 36;
+        getAllColor();
+        printMainScene();
+        printSelections();
+        printInput();
+    }
+
+    /**
+     * 打印主要界面部分
+     */
+    public void printMainScene() {
         for (int i = 0; i < this.height; i++) {
-            if (i == 0 || i == this.height - 1) {
-                System.out.println(colorString("", bound_color, 1, this.myWindows.get(i)));
+            if (i == 1) {
+                System.out.println(colorString(bound_color, 1, this.myWindows.get(i).substring(0, 1)) +
+                        colorString(highlight_color(title_color), 1, this.myWindows.get(i).substring(1, this.width - 1)) +
+                        colorString(bound_color, 1, this.myWindows.get(i).substring(this.width - 1, this.width)));
+            } else if (i == 0 || i == this.height - 1) {
+                System.out.println(colorString(bound_color, 1, this.myWindows.get(i)));
             } else {
-                System.out.println(colorString("", bound_color, 1, this.myWindows.get(i).substring(0, 1)) + this.myWindows.get(i).substring(1, this.width - 1) + colorString("", bound_color, 1, this.myWindows.get(i).substring(this.width - 1, this.width)));
+                System.out.println(colorString(bound_color, 1, this.myWindows.get(i).substring(0, 1)) +
+                        colorString(highlight_color(content_color), 1, this.myWindows.get(i).substring(1, this.width - 1)) +
+                        colorString(bound_color, 1, this.myWindows.get(i).substring(this.width - 1, this.width)));
             }
         }
-//        for (String myString : this.myWindows) {
-//            System.out.println(myString);
-//        }
+    }
+
+    /**
+     * 打印选项部分
+     */
+    public void printSelections() {
         for (String selectOption : this.selectOption) {
-            System.out.println(selectOption);
+            System.out.println(colorString(highlight_color(selections_color), 1, selectOption));
         }
-        System.out.print(pleaseEnter);
+    }
+
+    /**
+     * 打印输入部分
+     */
+    public void printInput() {
+        System.out.print(colorString(highlight_color(color("yellow")), 1, pleaseEnter) + colorStart(highlight_color(input_color)));
     }
 }

@@ -1,9 +1,12 @@
 package work.Scene;
 
+import work.DataInfo.ThemesInfo;
 import work.DataInfo.UserInfo;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
+import static work.DataInfo.ThemesInfo.highlight_color;
 
 public class MazeScene extends MyScene {
     private int nowx;
@@ -14,7 +17,6 @@ public class MazeScene extends MyScene {
         nowx = 1;
         nowy = 1;
     }
-
 
 
     @Override
@@ -29,38 +31,6 @@ public class MazeScene extends MyScene {
             this.myWindows.add(convert2DoubleByte(tmp.toString()));
         }
         this.selectOption.add("移动(上下左右)[WSAD](大小写都可) 返回主页[0] 结束应用[exit]");
-    }
-
-    @Override
-    public void printScene() throws IOException, InterruptedException {
-        clean();
-        for (int i = 0; i < this.myWindows.size(); i++) {
-            if(i==this.height-2&&i==nowx){
-                System.out.print(this.myWindows.get(i).substring(0,nowy));
-                printSingleColor("", 31, 1,this.myWindows.get(i).substring(nowy,nowy+1));
-                if(nowy<this.width-2){
-                    System.out.print(this.myWindows.get(i).substring(nowy+1,this.width-2));
-                    printSingleColor("", 36, this.myWindows.get(i).substring(this.width-2,this.width-1));
-                }
-                System.out.println(this.myWindows.get(i).substring(this.width-1,this.width));
-            }
-            else if (i == nowx){
-                System.out.print(this.myWindows.get(i).substring(0,nowy));
-                printSingleColor("", 31, 1,this.myWindows.get(i).substring(nowy,nowy+1));
-                System.out.println(this.myWindows.get(i).substring(nowy+1,this.width));
-            }else if(i==this.height-2){
-                System.out.print(this.myWindows.get(i).substring(0,this.width-2));
-                printSingleColor("", 36, this.myWindows.get(i).substring(this.width-2,this.width-1));
-                System.out.println(this.myWindows.get(i).substring(this.width-1,this.width));
-            }else
-                System.out.println(this.myWindows.get(i));
-        }
-        for (String selectOption : this.selectOption) {
-            System.out.println(selectOption);
-        }
-        System.out.println("当前道具数：");
-        System.out.println(new UserInfo().getNumOfItems_string());
-        System.out.print(pleaseEnter);
     }
 
     public void move(char directiion) throws IOException {
@@ -78,4 +48,37 @@ public class MazeScene extends MyScene {
         }
     }
 
+
+    @Override
+    public void printMainScene() {
+        for (int i = 0; i < this.myWindows.size(); i++) {
+            if (i == this.height - 2 && i == nowx) {
+                System.out.print(colorString(ThemesInfo.color("darkgreen"), this.myWindows.get(i).substring(0, nowy)) +
+                        colorString(highlight_color(ThemesInfo.color("red")), 1, this.myWindows.get(i).substring(nowy, nowy + 1)));
+                if (nowy < this.width - 2) {
+                    System.out.print(colorString(ThemesInfo.color("darkgreen"), this.myWindows.get(i).substring(nowy + 1, this.width - 2)) +
+                            colorString(highlight_color(ThemesInfo.color("yellow")), this.myWindows.get(i).substring(this.width - 2, this.width - 1)));
+                }
+                System.out.println(colorString(ThemesInfo.color("darkgreen"), this.myWindows.get(i).substring(this.width - 1, this.width)));
+            } else if (i == nowx) {
+                System.out.println(colorString(ThemesInfo.color("darkgreen"), this.myWindows.get(i).substring(0, nowy)) +
+                        colorString(highlight_color(ThemesInfo.color("red")), 1, this.myWindows.get(i).substring(nowy, nowy + 1)) +
+                        colorString(ThemesInfo.color("darkgreen"), this.myWindows.get(i).substring(nowy + 1, this.width)));
+            } else if (i == this.height - 2) {
+                System.out.println(colorString(ThemesInfo.color("darkgreen"), this.myWindows.get(i).substring(0, this.width - 2)) +
+                        colorString(highlight_color(ThemesInfo.color("yellow")), this.myWindows.get(i).substring(this.width - 2, this.width - 1)) +
+                        colorString(ThemesInfo.color("darkgreen"), this.myWindows.get(i).substring(this.width - 1, this.width)));
+            } else
+                System.out.println(colorString(ThemesInfo.color("darkgreen"), this.myWindows.get(i)));
+        }
+    }
+
+    @Override
+    public void printSelections() {
+        for (String selectOption : this.selectOption) {
+            System.out.println(colorString(highlight_color(selections_color), 1, selectOption));
+        }
+        System.out.println("当前道具数：");
+        System.out.println(new UserInfo().getNumOfItems_string());
+    }
 }

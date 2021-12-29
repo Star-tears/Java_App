@@ -32,6 +32,7 @@ public class Home {
                     new WordsGame();
                     break;
                 case "3":
+                    new Preference();
                     break;
                 case "4":
                     new QRcode("Bilibili");

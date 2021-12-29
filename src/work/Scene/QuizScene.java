@@ -17,9 +17,7 @@ public class QuizScene extends MyScene {
     private void addQuizInfo() {
         this.replaceLine(1, "知 识 问 答", "center");
         this.insertLine(3,quizInfo.getQuiz());
-        StringBuilder cut_line = new StringBuilder();
-        for (int i = 0; i < this.width - 2; i++) cut_line.append("-");
-        this.replaceLine(this.height / 2, cut_line.toString(), "left");
+        this.sepLine(this.height/2,'-');
         this.replaceLine(this.height / 2 + 1, quizInfo.getSelction(), "left");
         String printScore = "积分：" + userInfo.getScore();
         this.replaceLine(this.height - 2, printScore, "right");

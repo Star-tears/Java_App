@@ -1,0 +1,7 @@
+red
+darkgreen
+blue
+darkgreen
+darkgreen
+yellow
+red

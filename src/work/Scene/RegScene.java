@@ -2,6 +2,9 @@ package work.Scene;
 
 import java.io.IOException;
 
+import static work.DataInfo.ThemesInfo.color;
+import static work.DataInfo.ThemesInfo.highlight_color;
+
 public class RegScene extends MyScene {
     public RegScene() {
         super();
@@ -29,14 +32,20 @@ public class RegScene extends MyScene {
         this.replaceLine(this.height - 2, "welcome", "right");
     }
 
+
     @Override
-    public void printScene() throws IOException, InterruptedException {
-        clean();
-        for (String myString : this.myWindows) {
-            System.out.println(myString);
+    public void printMainScene() {
+        for (int i = 0; i < this.height; i++) {
+            if (i == 0 || i == this.height - 1) {
+                System.out.println(colorString(bound_color, 1, this.myWindows.get(i)));
+            } else {
+                System.out.println(colorString(bound_color, 1, this.myWindows.get(i).substring(0, 1)) + colorString(highlight_color(content_color), 1, this.myWindows.get(i).substring(1, this.width - 1)) + colorString(bound_color, 1, this.myWindows.get(i).substring(this.width - 1, this.width)));
+            }
         }
-        for (String selectOption : this.selectOption) {
-            System.out.println(selectOption);
-        }
+    }
+
+    @Override
+    public void printInput() {
+        System.out.print(colorStart(highlight_color(input_color)));
     }
 }

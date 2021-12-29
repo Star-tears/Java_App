@@ -58,8 +58,8 @@ public class WordsGame {
     private void action() throws IOException {
         op = op.toUpperCase();
         for (int i = 0; i < op.length(); i++) {
-            if (!"WASD".contains(op.subSequence(i, i))) continue;
-            mazeScene.move(op.charAt(i));
+            if (op.charAt(i)=='W'||op.charAt(i)=='A'||op.charAt(i)=='S'||op.charAt(i)=='D')
+                mazeScene.move(op.charAt(i));
         }
     }
 }

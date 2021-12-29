@@ -34,6 +34,23 @@ public class UserInfo {
         createUserRankList();
     }
 
+    private void init(String user) throws IOException {
+        itemId.put('一', 0);
+        itemId.put('键', 1);
+        itemId.put('三', 2);
+        itemId.put('连', 3);
+        name = user;
+        numOfItems = new ArrayList<>();
+        File file = new File(path_prefix + "user/userInfo/" + user + ".txt");
+        new PathPrefix(file);
+        Scanner in = new Scanner(file);
+        score = in.nextInt();
+        for (int i = 0; i < 4; i++) {
+            numOfItems.add(in.nextInt());
+        }
+        in.close();
+    }
+
     private void createUserRankList() throws IOException {
         Set<String> userSet = new DataInfo().getUserSet();
         for (String user_name_tmp : userSet) {
@@ -64,22 +81,6 @@ public class UserInfo {
         return allUserScore;
     }
 
-    private void init(String user) throws IOException {
-        itemId.put('一', 0);
-        itemId.put('键', 1);
-        itemId.put('三', 2);
-        itemId.put('连', 3);
-        name = user;
-        numOfItems = new ArrayList<>();
-        File file = new File(path_prefix + "user/userInfo/" + user + ".txt");
-        new PathPrefix(file);
-        Scanner in = new Scanner(file);
-        score = in.nextInt();
-        for (int i = 0; i < 4; i++) {
-            numOfItems.add(in.nextInt());
-        }
-        in.close();
-    }
 
     public void update() throws IOException {
         File file = new File(path_prefix + "user/userInfo/" + name + ".txt");

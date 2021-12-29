@@ -6,6 +6,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+import static work.DataInfo.ThemesInfo.color;
+import static work.DataInfo.ThemesInfo.highlight_color;
+
 public class QRcodeScene extends MyScene {
     private ArrayList<String> qrcode;
 
@@ -45,29 +48,32 @@ public class QRcodeScene extends MyScene {
         }
     }
 
+
     @Override
-    public void printScene() throws IOException, InterruptedException {
-        clean();
+    public void printMainScene() {
         for (int i = 0; i < this.height; i++) {
             StringBuilder tmp = new StringBuilder();
             if (i == 0 || i == this.height - 1) {
-                tmp.append(colorString("", 36, this.myWindows.get(i)));
+                tmp.append(colorString(93, 1, this.myWindows.get(i)));
             } else {
                 for (int j = 0; j < this.width; j++) {
                     if (j == 0 || j == this.width - 1) {
-                        tmp.append(colorString("", 36, String.valueOf(this.myWindows.get(i).charAt(j))));
+                        tmp.append(colorString(93, 1, String.valueOf(this.myWindows.get(i).charAt(j))));
                     } else if (String.valueOf(this.myWindows.get(i).charAt(j)).equals(convert2DoubleByte(" "))) {
                         tmp.append(convert2DoubleByte(" "));
                     } else {
-                        tmp.append(colorString("", 36, 1, 46, String.valueOf(this.myWindows.get(i).charAt(j))));
+                        tmp.append(colorString(96, 1, 106, String.valueOf(this.myWindows.get(i).charAt(j))));
                     }
                 }
             }
             System.out.println(tmp.toString());
         }
+    }
+
+    @Override
+    public void printSelections() {
         for (String selectOption : this.selectOption) {
-            System.out.println(colorString("", 35, 1, selectOption));
+            System.out.println(colorString(highlight_color(color("purple")), 1, selectOption));
         }
-        System.out.print(pleaseEnter);
     }
 }

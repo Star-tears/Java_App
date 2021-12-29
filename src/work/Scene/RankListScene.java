@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.TreeSet;
 
+import static work.DataInfo.ThemesInfo.highlight_color;
+
 public class RankListScene extends MyScene {
     private TreeSet<UserScore> userScoresRankList;
     private int page_pos;
@@ -32,7 +34,7 @@ public class RankListScene extends MyScene {
         this.replaceLine(2, "积分", "right");
         this.Init_myWindows = new ArrayList<>(this.myWindows);
         page_change(page_pos);
-        this.selectOption.add("返回主页[0] 上一页[" + colorString("", 36, 1, "[") + "] 下一页[" + colorString("", 36, 1, "]") + "] 退出应用[exit]");
+        this.selectOption.add("返回主页[0] 上一页[" + colorString(36, 1, "[") + "] 下一页[" + colorString(36, 1, "]") + "] 退出应用[exit]");
     }
 
     public int getPage_pos() {
@@ -61,23 +63,15 @@ public class RankListScene extends MyScene {
         }
     }
 
+
     @Override
-    public void printScene() throws IOException, InterruptedException {
-        clean();
-        int bound_color = 36;
+    public void printMainScene() {
         for (int i = 0; i < this.height; i++) {
             if (i == 0 || i == this.height - 1) {
-                System.out.println(colorString("", bound_color, 1, this.myWindows.get(i)));
+                System.out.println(colorString(bound_color, 1, this.myWindows.get(i)));
             } else {
-                System.out.println(colorString("", bound_color, 1, this.myWindows.get(i).substring(0, 1)) + colorString("", 33, 1, this.myWindows.get(i).substring(1, this.width - 1)) + colorString("", bound_color, 1, this.myWindows.get(i).substring(this.width - 1, this.width)));
+                System.out.println(colorString(bound_color, 1, this.myWindows.get(i).substring(0, 1)) + colorString(33, 1, this.myWindows.get(i).substring(1, this.width - 1)) + colorString(bound_color, 1, this.myWindows.get(i).substring(this.width - 1, this.width)));
             }
         }
-//        for (String myString : this.myWindows) {
-//            System.out.println(myString);
-//        }
-        for (String selectOption : this.selectOption) {
-            System.out.println(selectOption);
-        }
-        System.out.print(pleaseEnter);
     }
 }
