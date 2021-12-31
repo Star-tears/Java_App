@@ -37,7 +37,7 @@ public class ThemesInfo {
 
     public static void setThemes(String themes) throws IOException {
         ThemesInfo.themes = themes;
-        InputStream is = ThemesInfo.class.getResourceAsStream("/work/DataInfo/data/themes/" + ThemesInfo.themes + ".txt");
+        InputStream is = ThemesInfo.class.getResourceAsStream("/data/themes/" + ThemesInfo.themes + ".txt");
         BufferedReader in = new BufferedReader(new InputStreamReader(is));
         String line = "";
         ArrayList<Integer> tmp = new ArrayList<>();

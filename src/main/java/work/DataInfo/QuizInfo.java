@@ -14,7 +14,7 @@ public class QuizInfo {
 
     public QuizInfo(int id) throws IOException {
         id = id % 11;
-        InputStream is = this.getClass().getResourceAsStream("/work/DataInfo/data/question/" + id + ".txt");
+        InputStream is = this.getClass().getResourceAsStream("/data/question/" + id + ".txt");
         BufferedReader in = new BufferedReader(new InputStreamReader(is, "UTF-8"));
         ArrayList<String> lines = new ArrayList<>();
         for (int i = 0; i < 3; i++) {

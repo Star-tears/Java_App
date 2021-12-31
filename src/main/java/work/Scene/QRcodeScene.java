@@ -15,7 +15,7 @@ public class QRcodeScene extends MyScene {
     //二维码加载
     public QRcodeScene(String s) throws IOException {
         super(31, 31);
-        InputStream is = this.getClass().getResourceAsStream("/work/DataInfo/data/QRcode/" + s + ".txt");
+        InputStream is = this.getClass().getResourceAsStream("/data/QRcode/" + s + ".txt");
         BufferedReader in = new BufferedReader(new InputStreamReader(is));
         this.qrcode = new ArrayList<>();
         String line = "";
