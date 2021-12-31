@@ -17,7 +17,7 @@ public class ThemesInfo {
     private static int selections_color = 36;
     private static int notice_color = 32;
     private static int input_color = 32;
-    private static Map<String, Integer> color_id = new HashMap<>() {{
+    private static Map<String, Integer> color_id = new HashMap<String,Integer>() {{
         put("black", 30);
         put("red", 31);
         put("green", 32);

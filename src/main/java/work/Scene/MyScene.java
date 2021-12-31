@@ -199,7 +199,12 @@ public class MyScene {
      * @param ch    分割字符样式
      */
     public void sepLine(int index, char ch) {
-        this.insertLine(index, String.valueOf(ch).repeat(Math.max(0, this.width - 2)));
+//        this.insertLine(index, String.valueOf(ch).repeat(Math.max(0, this.width - 2)));
+        StringBuilder tmp=new StringBuilder();
+        for(int i=0;i<this.width-2;i++){
+            tmp.append(ch);
+        }
+        this.insertLine(index,tmp.toString());
     }
 
     /**
