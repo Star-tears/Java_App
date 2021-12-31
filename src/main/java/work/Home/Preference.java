@@ -3,7 +3,10 @@ package work.Home;
 import work.DataInfo.ThemesInfo;
 import work.Scene.PreferenceScene;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -17,7 +20,6 @@ public class Preference {
 
     public void run() throws IOException, InterruptedException {
         Scanner in = new Scanner(System.in);
-
         boolean flag = false;
         while (!flag) {
             preferenceScene = new PreferenceScene();
@@ -32,16 +34,22 @@ public class Preference {
                 case "themes":
                     chooseThemes();
                     break;
+                case "preference":
+                    new SettingOfPre();
+                    break;
             }
         }
     }
 
     private void chooseThemes() throws IOException {
         Scanner in = new Scanner(System.in);
-        System.out.println("");
+        System.out.print("请输入您想选择的主题:");
         op = in.nextLine();
-        if (!op.equals("0")) {
+        if (ThemesInfo.getAllThemes().contains(op)) {
             ThemesInfo.setThemes(op);
+        } else {
+            System.out.print("该主题不存在,按Enter键返回...");
+            in.nextLine();
         }
     }
 }

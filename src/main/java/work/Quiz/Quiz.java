@@ -35,7 +35,7 @@ public class Quiz {
 
     private void setQuizInfo() throws IOException, InterruptedException {
         Random rand = new Random();
-        int id = rand.nextInt(100);
+        int id = rand.nextInt(1000);
         quizInfo = new QuizInfo(id);
         QuizScene quizScene=new QuizScene(quizInfo);
         quizScene.printScene();

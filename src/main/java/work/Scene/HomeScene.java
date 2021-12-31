@@ -18,6 +18,7 @@ public class HomeScene extends MyScene {
         super.init();
         UserInfo user = new UserInfo();
         this.replaceLine(1, "学汉语用汉字，弘扬汉语言文化", "center");
+        this.sepLine(2, '=');
         this.replaceLine(3, "用户名：" + user.getName() + " 积分：" + user.getScore() + " 排行：" + user.getRank(), "right");
         this.insertLine(5, 3, "中华文化长河源远流长、浩浩汤汤，汉字是河中的浪、水中的波，是长河上悠扬的船夫曲、高扬的云中帆。汉字是国家的根、民族的魂，字字相连、句句相扣，筑起中华文化的共同体。人民是语言文字的主人，汉字如阵，华语如鼓，中华文化前行的方队一路尘土飞扬，正书写新的史记。");
         this.replaceLine(this.height - 6, "1.知识问答", "right");
@@ -28,5 +29,20 @@ public class HomeScene extends MyScene {
         this.replaceLine(this.height - 3, "道具数:", "left");
         this.replaceLine(this.height - 2, user.getNumOfItems_string(), "left");
         this.selectOption.add("知识问答[1] 文字迷宫[2] 神秘视界[3] 一键三连[4] 天梯排行[5] 退出应用[exit]");
+    }
+
+    @Override
+    public void printMainScene() {
+        for (int i = 0; i < this.height; i++) {
+            if (i == 2) {
+                printOneLine(i, sepLine_color);
+            } else if (i == 1) {
+                printOneLine(i, title_color);
+            } else if (i == 0 || i == this.height - 1) {
+                System.out.println(colorString(bound_color, 1, this.myWindows.get(i)));
+            } else {
+                printOneLine(i, content_color);
+            }
+        }
     }
 }

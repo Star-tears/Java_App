@@ -13,7 +13,7 @@ public class QuizInfo {
     private String ans;
 
     public QuizInfo(int id) throws IOException {
-        id = id % 11;
+        id = id % 20;
         InputStream is = this.getClass().getResourceAsStream("/data/question/" + id + ".txt");
         BufferedReader in = new BufferedReader(new InputStreamReader(is, "UTF-8"));
         ArrayList<String> lines = new ArrayList<>();
@@ -26,14 +26,23 @@ public class QuizInfo {
         in.close();
     }
 
+    /**
+     * @return 返回问题
+     */
     public String getQuiz() {
         return quiz;
     }
 
+    /**
+     * @return 返回选项
+     */
     public String getSelction() {
         return selction;
     }
 
+    /**
+     * @return 返回正确答案
+     */
     public String getAns() {
         return ans;
     }

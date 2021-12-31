@@ -42,7 +42,6 @@ public class MyScene {
      */
     public static void clean() {
         //System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n------------------------------------------------------------------------------------------------");
-
         try {
             String os = System.getProperty("os.name");
             if (os.contains("Windows")) {
@@ -200,11 +199,11 @@ public class MyScene {
      */
     public void sepLine(int index, char ch) {
 //        this.insertLine(index, String.valueOf(ch).repeat(Math.max(0, this.width - 2)));
-        StringBuilder tmp=new StringBuilder();
-        for(int i=0;i<this.width-2;i++){
+        StringBuilder tmp = new StringBuilder();
+        for (int i = 0; i < this.width - 2; i++) {
             tmp.append(ch);
         }
-        this.insertLine(index,tmp.toString());
+        this.insertLine(index, tmp.toString());
     }
 
     /**
@@ -237,15 +236,11 @@ public class MyScene {
     public void printMainScene() {
         for (int i = 0; i < this.height; i++) {
             if (i == 1) {
-                System.out.println(colorString(bound_color, 1, this.myWindows.get(i).substring(0, 1)) +
-                        colorString(highlight_color(title_color), 1, this.myWindows.get(i).substring(1, this.width - 1)) +
-                        colorString(bound_color, 1, this.myWindows.get(i).substring(this.width - 1, this.width)));
+                printOneLine(i, title_color);
             } else if (i == 0 || i == this.height - 1) {
                 System.out.println(colorString(bound_color, 1, this.myWindows.get(i)));
             } else {
-                System.out.println(colorString(bound_color, 1, this.myWindows.get(i).substring(0, 1)) +
-                        colorString(highlight_color(content_color), 1, this.myWindows.get(i).substring(1, this.width - 1)) +
-                        colorString(bound_color, 1, this.myWindows.get(i).substring(this.width - 1, this.width)));
+                printOneLine(i, content_color);
             }
         }
     }
@@ -263,6 +258,32 @@ public class MyScene {
      * 打印输入部分
      */
     public void printInput() {
-        System.out.print(colorString(highlight_color(color("yellow")), 1, pleaseEnter) + colorStart(highlight_color(input_color)));
+        System.out.print(colorString(highlight_color(notice_color), 1, pleaseEnter) + colorStart(highlight_color(input_color)));
     }
+
+    /**
+     * 打印第index行
+     *
+     * @param index 行号
+     * @param color 色号
+     */
+    public void printOneLine(int index, int color) {
+        System.out.println(colorString(bound_color, 1, this.myWindows.get(index).substring(0, 1)) +
+                colorString(highlight_color(color), 1, this.myWindows.get(index).substring(1, this.width - 1)) +
+                colorString(bound_color, 1, this.myWindows.get(index).substring(this.width - 1, this.width)));
+    }
+
+    /**
+     * 打印第index行
+     *
+     * @param index 行号
+     * @param color 色号
+     * @param num1  参数
+     */
+    public void printOneLine(int index, int color, int num1) {
+        System.out.println(colorString(bound_color, 1, this.myWindows.get(index).substring(0, 1)) +
+                colorString(highlight_color(color), 1, num1, this.myWindows.get(index).substring(1, this.width - 1)) +
+                colorString(bound_color, 1, this.myWindows.get(index).substring(this.width - 1, this.width)));
+    }
+
 }
