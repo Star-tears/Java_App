@@ -31,18 +31,5 @@ public class HomeScene extends MyScene {
         this.selectOption.add("知识问答[1] 文字迷宫[2] 神秘视界[3] 一键三连[4] 天梯排行[5] 退出应用[exit]");
     }
 
-    @Override
-    public void printMainScene() {
-        for (int i = 0; i < this.height; i++) {
-            if (i == 2) {
-                printOneLine(i, sepLine_color);
-            } else if (i == 1) {
-                printOneLine(i, title_color);
-            } else if (i == 0 || i == this.height - 1) {
-                System.out.println(colorString(bound_color, 1, this.myWindows.get(i)));
-            } else {
-                printOneLine(i, content_color);
-            }
-        }
-    }
+
 }

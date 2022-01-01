@@ -33,6 +33,7 @@ public class QRcodeScene extends MyScene {
             this.replaceLine(i + 1, convert2DoubleByte(tmp.toString()), "left");
         }
         this.selectOption.add("恭喜你发现了这里，欢迎一键三连！夹带私货（bushi");
+        this.selectOption.add("欢迎关注B站 https://space.bilibili.com/25047766");
         this.selectOption.add("返回主页[0] 结束程序[exit]");
     }
 

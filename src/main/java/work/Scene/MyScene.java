@@ -237,8 +237,10 @@ public class MyScene {
         for (int i = 0; i < this.height; i++) {
             if (i == 1) {
                 printOneLine(i, title_color);
-            } else if (i == 0 || i == this.height - 1) {
-                System.out.println(colorString(bound_color, 1, this.myWindows.get(i)));
+            }else if(i==2){
+                printOneLine(i, sepLine_color);
+            }else if (i == 0 || i == this.height - 1) {
+                printOneLine(i, bound_color);
             } else {
                 printOneLine(i, content_color);
             }

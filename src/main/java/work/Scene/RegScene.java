@@ -24,6 +24,8 @@ public class RegScene extends MyScene {
             }
             this.myWindows.add(convert2DoubleByte(tmp.toString()));
         }
+        this.replaceLine(1, "欢 迎 来 到 汉 字 世 界 ！", "center");
+        this.sepLine(2, '=');
         int x = this.height / 4;
         this.replaceLine(x, "注      册", "center");
         this.replaceLine(x + 2, "注册用户名：_________", "center");
@@ -32,17 +34,6 @@ public class RegScene extends MyScene {
         this.replaceLine(this.height - 2, "welcome", "right");
     }
 
-
-    @Override
-    public void printMainScene() {
-        for (int i = 0; i < this.height; i++) {
-            if (i == 0 || i == this.height - 1) {
-                System.out.println(colorString(bound_color, 1, this.myWindows.get(i)));
-            } else {
-                System.out.println(colorString(bound_color, 1, this.myWindows.get(i).substring(0, 1)) + colorString(highlight_color(content_color), 1, this.myWindows.get(i).substring(1, this.width - 1)) + colorString(bound_color, 1, this.myWindows.get(i).substring(this.width - 1, this.width)));
-            }
-        }
-    }
 
     @Override
     public void printInput() {

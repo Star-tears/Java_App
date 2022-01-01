@@ -12,6 +12,8 @@ public class LoginScene extends MyScene {
     @Override
     public void init() {
         super.init();
+        this.replaceLine(1, "欢 迎 来 到 汉 字 世 界 ！", "center");
+        this.sepLine(2, '=');
         int x = this.height / 3;
         this.replaceLine(x, "登      录", "center");
         this.replaceLine(x + 3, "用户名：____________", "center");
