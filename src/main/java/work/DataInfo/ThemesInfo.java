@@ -28,6 +28,8 @@ public class ThemesInfo {
     private static Set<String> allThemes = new HashSet<String>() {{
         add("light");
         add("dark");
+        add("beauty");
+        add("windy");
     }};
 
     public ThemesInfo() {

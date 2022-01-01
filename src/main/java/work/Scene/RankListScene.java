@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.TreeSet;
 
+import static work.DataInfo.ThemesInfo.color;
 import static work.DataInfo.ThemesInfo.highlight_color;
 
 public class RankListScene extends MyScene {
@@ -68,9 +69,9 @@ public class RankListScene extends MyScene {
     public void printMainScene() {
         for (int i = 0; i < this.height; i++) {
             if (i == 0 || i == this.height - 1) {
-                System.out.println(colorString(bound_color, 1, this.myWindows.get(i)));
+                printOneLine(i, bound_color);
             } else {
-                System.out.println(colorString(bound_color, 1, this.myWindows.get(i).substring(0, 1)) + colorString(33, 1, this.myWindows.get(i).substring(1, this.width - 1)) + colorString(bound_color, 1, this.myWindows.get(i).substring(this.width - 1, this.width)));
+                printOneLine(i, color("yellow"));
             }
         }
     }

@@ -24,6 +24,7 @@ public class SettingOfPreScene extends MyScene {
         this.insertLine(13, "black red green yellow");
         this.insertLine(14, "blue purple darkgreen white");
         this.selectOption.add("返回[0] 个性化定制[<position> <color>] 退出应用[exit]");
+        this.selectOption.add("例如输入\"bound blue\"，就是将边框颜色设定为蓝色。");
     }
 
     @Override

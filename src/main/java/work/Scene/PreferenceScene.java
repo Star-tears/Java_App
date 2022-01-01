@@ -33,7 +33,7 @@ public class PreferenceScene extends MyScene {
     @Override
     public void printMainScene() {
         for (int i = 0; i < this.height; i++) {
-            if (i == 2 || i == this.height / 2) {
+            if (i == 2 || i == this.height / 2 || i == this.height / 2 + 3) {
                 printOneLine(i, sepLine_color);
             } else if (i == 1) {
                 printOneLine(i, title_color);
