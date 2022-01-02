@@ -35,7 +35,7 @@ public class RankListScene extends MyScene {
         this.replaceLine(2, "积分", "right");
         this.Init_myWindows = new ArrayList<>(this.myWindows);
         page_change(page_pos);
-        this.selectOption.add("返回主页[0] 上一页[" + colorString(36, 1, "[") + "] 下一页[" + colorString(36, 1, "]") + "] 退出应用[exit]");
+        this.selectOption.add("\033[0m返回主页[0] 上一页[" + colorString(96, 1, "[") + "] 下一页[" + colorString(36, 1, "]") + "] 退出应用[exit]");
     }
 
     public int getPage_pos() {

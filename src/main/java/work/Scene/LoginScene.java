@@ -1,5 +1,7 @@
 package work.Scene;
 
+import work.DataInfo.ThemesInfo;
+
 public class LoginScene extends MyScene {
     public LoginScene() {
         super();
@@ -20,5 +22,6 @@ public class LoginScene extends MyScene {
         this.replaceLine(x + 5, " 密码：____________", "center");
         this.replaceLine(this.height - 2, "QAQ", "right");
         this.selectOption.add("登录[1] 注册[2] 退出应用[exit]");
+        this.selectOption.add(colorString(ThemesInfo.highlight_color(ThemesInfo.color("blue")), 7, "操作帮助：形如\"操作名[操作命令]\",即输入方括号内操作命令执行该操作。"));
     }
 }
