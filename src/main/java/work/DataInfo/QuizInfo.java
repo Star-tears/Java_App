@@ -11,9 +11,10 @@ public class QuizInfo {
     private String quiz;
     private String selction;
     private String ans;
+    private static final int allQuizNum = 20;
 
     public QuizInfo(int id) throws IOException {
-        id = id % 20;
+        id = id % allQuizNum;
         InputStream is = this.getClass().getResourceAsStream("/data/question/" + id + ".txt");
         BufferedReader in = new BufferedReader(new InputStreamReader(is, "UTF-8"));
         ArrayList<String> lines = new ArrayList<>();
@@ -45,5 +46,9 @@ public class QuizInfo {
      */
     public String getAns() {
         return ans;
+    }
+
+    public static int getAllQuizNum() {
+        return allQuizNum;
     }
 }

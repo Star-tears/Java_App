@@ -96,7 +96,7 @@ public class Login {
             }
             System.out.println("密码不合法！（密码必须是6-20位的字母、数字、下划线组合）");
         }
-        System.out.print("请再输入一次密码： ");
+        System.out.print("请重复你的密码以确认： ");
         String password2 = in.nextLine();
         if (password2.equals(password1)) {
             DataInfo dataInfo = new DataInfo();

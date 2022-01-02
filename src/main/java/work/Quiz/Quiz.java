@@ -8,9 +8,13 @@ import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 
+import static work.DataInfo.QuizInfo.getAllQuizNum;
+
 public class Quiz {
     private QuizInfo quizInfo;
     private String op;
+    private int allQuizNum = QuizInfo.getAllQuizNum();
+    private int[] vis = new int[100];
 
     public Quiz() throws IOException, InterruptedException {
         run();
@@ -26,7 +30,7 @@ public class Quiz {
             } else if (op.equals("0")) {
                 break;
             }
-            op=op.toUpperCase();
+            op = op.toUpperCase();
             judge();
             System.out.print("输入Enter键以继续...");
             in.nextLine();
@@ -36,8 +40,14 @@ public class Quiz {
     private void setQuizInfo() throws IOException, InterruptedException {
         Random rand = new Random();
         int id = rand.nextInt(1000);
+        id = id % allQuizNum;
+        while (vis[id] == 1) {
+            id = rand.nextInt(1000);
+            id = id % allQuizNum;
+        }
+        vis[id] = 1;
         quizInfo = new QuizInfo(id);
-        QuizScene quizScene=new QuizScene(quizInfo);
+        QuizScene quizScene = new QuizScene(quizInfo);
         quizScene.printScene();
     }
 
