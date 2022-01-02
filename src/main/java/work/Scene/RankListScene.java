@@ -65,14 +65,4 @@ public class RankListScene extends MyScene {
     }
 
 
-    @Override
-    public void printMainScene() {
-        for (int i = 0; i < this.height; i++) {
-            if (i == 0 || i == this.height - 1) {
-                printOneLine(i, bound_color);
-            } else {
-                printOneLine(i, color("yellow"));
-            }
-        }
-    }
 }

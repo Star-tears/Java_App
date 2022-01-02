@@ -1,7 +1,7 @@
 red
 darkgreen
-blue
 darkgreen
+blue
 darkgreen
 yellow
 red
