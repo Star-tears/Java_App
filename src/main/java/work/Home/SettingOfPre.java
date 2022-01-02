@@ -1,10 +1,8 @@
 package work.Home;
 
 import work.DataInfo.ThemesInfo;
-import work.Scene.PreferenceScene;
 import work.Scene.SettingOfPreScene;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class SettingOfPre {

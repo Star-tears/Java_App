@@ -51,6 +51,9 @@ public class UserInfo {
         in.close();
     }
 
+    /**
+     * 创建用户排名表
+     */
     private void createUserRankList() throws IOException {
         Set<String> userSet = new DataInfo().getUserSet();
         for (String user_name_tmp : userSet) {
@@ -64,6 +67,12 @@ public class UserInfo {
         }
     }
 
+    /**
+     * 获取用户当前排名
+     *
+     * @param user 用户名
+     * @return 返回该用户当前排名
+     */
     public int getUserRank(String user) {
         TreeSet<UserScore> allUserScore = new TreeSet<>(userScoreSet);
         allUserScore.add(new UserScore(name, score));
@@ -81,7 +90,9 @@ public class UserInfo {
         return allUserScore;
     }
 
-
+    /**
+     * 更新当前用户信息，写入文件
+     */
     public void update() throws IOException {
         File file = new File(path_prefix + "user/userInfo/" + name + ".txt");
         new PathPrefix(file);
@@ -113,13 +124,24 @@ public class UserInfo {
         return "一:" + numOfItems.get(itemId.get('一')) + " 键:" + numOfItems.get(itemId.get('键')) + " 三:" + numOfItems.get(itemId.get('三')) + " 连:" + numOfItems.get(itemId.get('连'));
     }
 
-    //增加分数并更新
+
+    /**
+     * 增加分数并更新
+     *
+     * @param num 增加分数
+     */
     public void addScore(int num) throws IOException {
         score += num;
         update();
     }
 
-    //增加某个道具数量并更新
+
+    /**
+     * 增加某个道具数量并更新
+     *
+     * @param key 道具名
+     * @param num 道具数量
+     */
     public void addItem(char key, int num) throws IOException {
         if (itemId.containsKey(key)) {
             numOfItems.set(itemId.get(key), numOfItems.get(itemId.get(key)) + num);

@@ -16,11 +16,11 @@ public class Quiz {
     private int allQuizNum = QuizInfo.getAllQuizNum();
     private int[] vis = new int[100];
 
-    public Quiz() throws IOException, InterruptedException {
+    public Quiz() throws IOException {
         run();
     }
 
-    public void run() throws IOException, InterruptedException {
+    public void run() throws IOException {
         Scanner in = new Scanner(System.in);
         for (int i = 0; i < 5; i++) {
             setQuizInfo();
@@ -37,7 +37,10 @@ public class Quiz {
         }
     }
 
-    private void setQuizInfo() throws IOException, InterruptedException {
+    /**
+     * 生成知识问答题面
+     */
+    private void setQuizInfo() throws IOException {
         Random rand = new Random();
         int id = rand.nextInt(1000);
         id = id % allQuizNum;
@@ -51,6 +54,9 @@ public class Quiz {
         quizScene.printScene();
     }
 
+    /**
+     * 判断答案是否正确并反馈
+     */
     private void judge() throws IOException {
         if (op.equals(quizInfo.getAns())) {
             System.out.println("恭喜你！答案正确，获得五积分！");

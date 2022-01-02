@@ -14,11 +14,11 @@ public class Preference {
     private String op;
     private PreferenceScene preferenceScene;
 
-    public Preference() throws IOException, InterruptedException {
+    public Preference() throws IOException {
         run();
     }
 
-    public void run() throws IOException, InterruptedException {
+    public void run() throws IOException {
         Scanner in = new Scanner(System.in);
         boolean flag = false;
         while (!flag) {
@@ -41,6 +41,9 @@ public class Preference {
         }
     }
 
+    /**
+     * 选择主题
+     */
     private void chooseThemes() throws IOException {
         Scanner in = new Scanner(System.in);
         System.out.print("请输入您想选择的主题:");

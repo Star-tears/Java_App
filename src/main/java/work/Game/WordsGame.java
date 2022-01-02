@@ -32,6 +32,9 @@ public class WordsGame {
         }
     }
 
+    /**
+     * 初始化迷宫信息
+     */
     private void init() {
         selectonDifficulty();
         mazeScene = new MazeScene(difficulty + 2, difficulty + 2);
@@ -42,6 +45,9 @@ public class WordsGame {
         }
     }
 
+    /**
+     * 选择迷宫难度
+     */
     private void selectonDifficulty() {
         Scanner in = new Scanner(System.in);
         System.out.println("简单(11*11) 中等(31*31) 困难(51*51)");
@@ -55,10 +61,13 @@ public class WordsGame {
         difficulty = (2 * num - 1) * 10 + 1;
     }
 
+    /**
+     * 移动角色
+     */
     private void action() throws IOException {
         op = op.toUpperCase();
         for (int i = 0; i < op.length(); i++) {
-            if (op.charAt(i)=='W'||op.charAt(i)=='A'||op.charAt(i)=='S'||op.charAt(i)=='D')
+            if (op.charAt(i) == 'W' || op.charAt(i) == 'A' || op.charAt(i) == 'S' || op.charAt(i) == 'D')
                 mazeScene.move(op.charAt(i));
         }
     }

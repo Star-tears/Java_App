@@ -9,10 +9,20 @@ public class UserScore implements Comparable {
         this.score = _score;
     }
 
+    /**
+     * 获取用户名
+     *
+     * @return 返回用户名
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * 获取分数
+     *
+     * @return 返回分数
+     */
     public int getScore() {
         return score;
     }

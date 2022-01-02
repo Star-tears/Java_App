@@ -22,7 +22,8 @@ public class Maze {
             {0, 2}, {0, -2}, {2, 0}, {-2, 0}
     }; //用来计算邻接格
     private ArrayList<String> mazeScene = new ArrayList<>();
-    private ArrayList<String> itemEnding=new ArrayList<>();
+    private ArrayList<String> itemEnding = new ArrayList<>();
+
     public Maze() {
         this.len = 11;
         this.wid = 11;
@@ -115,18 +116,15 @@ public class Maze {
             }
         }
         for (int i = 0; i < len; i++) {
-            StringBuilder tmp=new StringBuilder();
+            StringBuilder tmp = new StringBuilder();
             for (int j = 0; j < wid; j++) {
-                if(i==0&&j==0){
+                if (i == 0 && j == 0) {
                     tmp.append("我");
-                }
-                else if(i==len-1&&j==wid-1){
+                } else if (i == len - 1 && j == wid - 1) {
                     tmp.append(itemEnding.get(new Random().nextInt(4)));
-                }
-                else if(maze[i][j]=='#'){
+                } else if (maze[i][j] == '#') {
                     tmp.append("墙");
-                }
-                else if(maze[i][j]=='.'){
+                } else if (maze[i][j] == '.') {
                     tmp.append(" ");
                 }
             }

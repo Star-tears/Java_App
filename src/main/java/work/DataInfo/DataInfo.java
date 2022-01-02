@@ -19,6 +19,9 @@ public class DataInfo {
 //        test();
     }
 
+    /**
+     * 读取用户信息
+     */
     private void init() throws IOException {
         user_pwd = new HashMap<>();
         File file = new File(path_prefix + "user/userPwd/userPwd.txt");
@@ -34,7 +37,9 @@ public class DataInfo {
         in.close();
     }
 
-    public Set<String> getUserSet(){return user_pwd.keySet();}
+    public Set<String> getUserSet() {
+        return user_pwd.keySet();
+    }
 
     /**
      * 判断用户名和密码是否正确
@@ -49,12 +54,21 @@ public class DataInfo {
         return false;
     }
 
+    /**
+     * 测试用
+     */
     private void test() {
         for (String s : user_pwd.keySet()) {
             System.out.println(s + " : " + user_pwd.get(s));
         }
     }
 
+    /**
+     * 添加新用户
+     *
+     * @param user     用户名
+     * @param password 用户密码
+     */
     public void add(String user, String password) throws IOException {
         user_pwd.put(user, password);
         File file = new File(path_prefix + "user/userPwd/userPwd.txt");
@@ -65,6 +79,11 @@ public class DataInfo {
         creatUser(user);
     }
 
+    /**
+     * 初始化新用户文件
+     *
+     * @param user 用户名
+     */
     private void creatUser(String user) throws IOException {
         File file = new File(path_prefix + "user/userInfo/" + user + ".txt");
         new PathPrefix(file);

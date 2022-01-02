@@ -18,7 +18,13 @@ public class Login {
         run();
     }
 
-    //检查用户名和密码是否合法
+
+    /**
+     * 检查用户名和密码是否合法
+     *
+     * @param pwd 用户名或密码
+     * @return 合法返回真
+     */
     private static boolean checkPwd(String pwd) {
         String regExp = "^[\\w_]{6,20}$";
         if (pwd.matches(regExp)) {
@@ -51,7 +57,9 @@ public class Login {
         }
     }
 
-    //登录
+    /**
+     * 登录
+     */
     private void login() throws IOException {
         Scanner in = new Scanner(System.in);
         System.out.print("用户名： ");
@@ -71,7 +79,9 @@ public class Login {
     }
 
 
-    //注册
+    /**
+     * 注册
+     */
     private void register() throws IOException, InterruptedException {
         Scanner in = new Scanner(System.in);
         RegScene regScene = new RegScene();
@@ -79,7 +89,7 @@ public class Login {
         while (true) {
             System.out.print("输入注册用户名： ");
             user1 = in.nextLine();
-            if (checkPwd(user1)&&!dataInfo.checkInKeys(user1)) {
+            if (checkPwd(user1) && !dataInfo.checkInKeys(user1)) {
                 break;
             }
             if (dataInfo.checkInKeys(user1)) {

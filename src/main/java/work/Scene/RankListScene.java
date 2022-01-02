@@ -38,10 +38,20 @@ public class RankListScene extends MyScene {
         this.selectOption.add("\033[0m返回主页[0] 上一页[" + colorString(96, 1, "[") + "] 下一页[" + colorString(36, 1, "]") + "] 退出应用[exit]");
     }
 
+    /**
+     * 返回当前页码
+     *
+     * @return 返回当前页码
+     */
     public int getPage_pos() {
         return page_pos;
     }
 
+    /**
+     * 切换页码
+     *
+     * @param next_pos 页码
+     */
     public void page_change(int next_pos) {
         this.myWindows = new ArrayList<>(Init_myWindows);
         if (1 <= next_pos && next_pos <= allpage_num) {
